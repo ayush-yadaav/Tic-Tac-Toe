@@ -3,7 +3,7 @@ import TicTacToe from './components/TicTacToe'
 
 function App() {
   return (
-    <div className='bg-slate-900 min-h-screen'>
+    <div className='bg-white min-h-screen'>
       <TicTacToe />
     </div>
   )
