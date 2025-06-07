@@ -122,8 +122,8 @@ function TicTacToe() {
 
 
             {winner && (
-                <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-60 flex justify-center items-center z-50">
-                    <div className="bg-slate-600 text-white p-6 rounded-lg shadow-lg text-center max-w-[90%]">
+                <div className="fixed top-0 left-0 w-full h-full bg-[#eaeaea] bg-opacity-60 flex justify-center items-center z-50">
+                    <div className="bg-white text-black p-6 rounded-lg shadow-lg text-center max-w-[90%]">
                         <h2 className="text-2xl sm:text-3xl font-bold mb-4">
                             {winner === 'draw' ? "It's a Draw!" : `Player ${winner.toUpperCase()} Wins!`}
                         </h2>
