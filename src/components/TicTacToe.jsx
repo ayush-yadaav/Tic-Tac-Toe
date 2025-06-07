@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import circle_icon from '../assets/circle.png'
 import cross_png from '../assets/cross.png'
+import play_png from '../assets/play.png'
+import replay_png from '../assets/replay.png'
 
 function TicTacToe() {
 
@@ -74,37 +76,49 @@ function TicTacToe() {
         setwinner(null);
     };
 
-const newGame = () => {
-  localStorage.removeItem('ticTacToeScore');
-  setdata(Array(9).fill(''));
-  setcount(0);
-  setlock(false);
-  setwinner(null);
-  setscore({ X: 0, O: 0 });
-};
+    const newGame = () => {
+        localStorage.removeItem('ticTacToeScore');
+        setdata(Array(9).fill(''));
+        setcount(0);
+        setlock(false);
+        setwinner(null);
+        setscore({ X: 0, O: 0 });
+    };
 
 
 
     return (
         <div className='main text-center flex flex-col items-center  justify-center py-3'>
-           <div className="flex flex-col items-center justify-center md:mt-1 mt-[20%]">
-             <h1 className='md:text-4xl text-3xl text-white font-semibold'>Tic Tac Toe</h1>
-            <div className="score py-2">
-                <p className='md:text-xl text-sm text-white font-semibold '>Score:- Player X :{score.X} || Player O: {score.O}</p>
-            </div>
-            <div className="board flex flex-wrap w-[90vw] max-w-[500px] aspect-square md:py-3 py-5">
-                {data.map((val, index) => (
-                    <div key={index} className="board-box w-1/3 flex bg-slate-800 border-[3px] border-[#0f1b21]  cursor-pointer items-center justify-center aspect-square"
-                        onClick={() => {
-                            clickBtn(index)
-                        }}
-                    >
-                        {renderIcon(val)}
+            <div className="flex flex-col items-center justify-center md:mt-1 ">
+                <div className="score py-2 flex items-center gap-10 md:py-5 mt-7">
+                    {/* <p className='md:text-xl text-sm text-black font-semibold '>Score:- Player X :{score.X} || Player O: {score.O}</p> */}
+                    <div>
+                        <img src={cross_png} alt="cross" height={50} width={45} />
+                        <p className='md:text-2xl font-medium text-xl'>{score.X} wins</p>
                     </div>
-                ))}
+                    <div>
+                        <img src={circle_icon} alt="cross" height={50} width={45} />
+                        <p className='md:text-2xl font-medium text-xl'>{score.O} wins</p>
+                    </div>
+                </div>
+                <div className="board flex flex-wrap w-[80vw] max-w-[400px] aspect-square md:py-3 py-5">
+                    {data.map((val, index) => (
+                        <div
+                            key={index}
+                            className={`board-box w-1/3 flex bg-white border-black cursor-pointer items-center justify-center aspect-square
+                           ${index < 6 ? 'border-b-[3px]' : ''}
+                           ${(index + 1) % 3 !== 0 ? 'border-r-[3px]' : ''}`}
+                            onClick={() => {
+                                clickBtn(index);
+                            }}
+                        >
 
+                            {renderIcon(val)}
+                        </div>
+                    ))}
+
+                </div>
             </div>
-           </div>
 
 
             {winner && (
@@ -124,11 +138,10 @@ const newGame = () => {
             )}
 
 
-            <div className="game-choice flex gap-3 py-3 md:mt-2 ">
-                <button className='bg-slate-700 py-4  px-6
-     rounded-xl text-white text-xl' onClick={resetGame}>Reset</button>
-                <button className='bg-slate-700 py-4 px-6
-     rounded-xl text-white text-xl' onClick={newGame}>New Game</button>
+            <div className="game-choice flex gap-3 py-3 md:mt-6 mt-10">
+
+<img src={replay_png} alt="replay" height={15} width={60}  onClick={resetGame} />
+<img src={play_png} alt="play" height={15} width={60} onClick={newGame} />
             </div>
         </div>
     )
